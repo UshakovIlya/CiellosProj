@@ -5,6 +5,7 @@ page 50102 "Customer Order List"
     PageType = List;
     SourceTable = "Customer Order Header";
     UsageCategory = Lists;
+    CardPageID = "Customer Order";
 
     layout
     {
@@ -30,5 +31,42 @@ page 50102 "Customer Order List"
                 }
             }
         }
+
+        area(FactBoxes)
+        {
+            part(CustStat; "Customer Statistics FactBox")
+            {
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "No." = FIELD(Customer);
+            }
+            part(CustDetFactBox; "Customer Details FactBox")
+            {
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "No." = FIELD(Customer);
+            }
+        }
+    }
+
+    actions
+    {
+        area(Processing)
+        {
+            action(PostOrder)
+            {
+                ApplicationArea = All;
+                Caption = 'Post Orders';
+                Image = Post;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+        }
+        area(Promoted)
+        {
+            actionref(PromPostOrd; PostOrder) { }
+        }
+
     }
 }

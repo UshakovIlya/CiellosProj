@@ -4,7 +4,14 @@ codeunit 50100 OnInstallCodeunit
 
     trigger OnInstallAppPerCompany()
     var
-        NoSeries: Record NoSeries;
+        NoSeries: Record "No. Series";
+    begin
+
+    end;
+
+    trigger OnInstallAppPerDatabase()
+    var
+        myInt: Integer;
     begin
 
     end;
