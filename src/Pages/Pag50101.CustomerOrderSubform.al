@@ -1,10 +1,10 @@
-page 50104 "Posted Customer Order Subform"
+page 50101 "Customer Order Subform"
 {
     ApplicationArea = All;
     Caption = 'Customer Order Subform';
     PageType = ListPart;
     SourceTable = "Customer Order Line";
-
+    
     layout
     {
         area(content)

@@ -1,8 +1,8 @@
-table 50101 "Customer Order Header"
+table 50104 "Posted Customer Order Header"
 {
     Caption = 'Customer Order Header';
     DataClassification = CustomerContent;
-    
+
     fields
     {
         field(1; "Order No"; Code[20])

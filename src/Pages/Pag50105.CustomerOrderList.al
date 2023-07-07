@@ -1,29 +1,20 @@
-page 50100 "Customer Order"
+page 50105 "Posted Customer Order List"
 {
     ApplicationArea = All;
-    Caption = 'Customer Order';
-    PageType = Card;
+    Caption = 'Customer Order List';
+    PageType = List;
     SourceTable = "Customer Order Header";
-    
+    UsageCategory = Lists;
+
     layout
     {
         area(content)
         {
-            group(General)
+            repeater(General)
             {
-                Caption = 'General';
-                
-                field(Customer; Rec.Customer)
-                {
-                    ToolTip = 'Specifies the value of the Customer field.';
-                }
                 field("Customer Name"; Rec."Customer Name")
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
-                }
-                field("No. Series"; Rec."No. Series")
-                {
-                    ToolTip = 'Specifies the value of the No. Series field.';
                 }
                 field("Order Amount"; Rec."Order Amount")
                 {
@@ -32,14 +23,6 @@ page 50100 "Customer Order"
                 field("Order No"; Rec."Order No")
                 {
                     ToolTip = 'Specifies the value of the Order No field.';
-                }
-                field(SystemId; Rec.SystemId)
-                {
-                    ToolTip = 'Specifies the value of the SystemId field.';
-                }
-                field(Vendor; Rec.Vendor)
-                {
-                    ToolTip = 'Specifies the value of the Vendor field.';
                 }
                 field("Vendor Name"; Rec."Vendor Name")
                 {

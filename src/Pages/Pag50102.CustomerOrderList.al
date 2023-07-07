@@ -1,4 +1,4 @@
-page 50105 "Posted Customer Order List"
+page 50102 "Customer Order List"
 {
     ApplicationArea = All;
     Caption = 'Customer Order List';

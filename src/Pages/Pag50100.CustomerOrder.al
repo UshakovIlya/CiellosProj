@@ -1,10 +1,10 @@
-page 50103 "Posted Customer Order"
+page 50100 "Customer Order"
 {
     ApplicationArea = All;
     Caption = 'Customer Order';
     PageType = Card;
     SourceTable = "Customer Order Header";
-
+    
     layout
     {
         area(content)
@@ -12,7 +12,7 @@ page 50103 "Posted Customer Order"
             group(General)
             {
                 Caption = 'General';
-
+                
                 field(Customer; Rec.Customer)
                 {
                     ToolTip = 'Specifies the value of the Customer field.';
