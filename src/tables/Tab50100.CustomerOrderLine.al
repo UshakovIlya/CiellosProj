@@ -36,6 +36,17 @@ table 50100 "Customer Order Line"
         field(8; "No"; Code[20])
         {
             Caption = 'Item No';
+            TableRelation = IF ("Line Type" = CONST(" ")) "Standard Text"
+            ELSE
+            IF ("Line Type" = CONST("G/L Account")) "G/L Account"
+            ELSE
+            IF ("Line Type" = CONST("Fixed Asset")) "Fixed Asset"
+            ELSE
+            IF ("Line Type" = CONST("Charge (Item)")) "Item Charge"
+            ELSE
+            IF ("Line Type" = CONST(Item)) Item
+            else
+            if ("Line Type" = const(Resource)) Resource;
         }
     }
     keys

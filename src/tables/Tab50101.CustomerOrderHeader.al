@@ -48,4 +48,18 @@ table 50101 "Customer Order Header"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+    begin
+        if "Order No" = '' then begin
+            ExtSetup.Get();
+            ExtSetup.TestField("Cust. Order");
+            NoSeriesMgt.InitSeries(ExtSetup."Cust. Order", xRec."No. Series", 0D, "Order No", "No. Series");
+        end;
+    end;
+
+    var
+        ExtSetup: Record "Extension Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }

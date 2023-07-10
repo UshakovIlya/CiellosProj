@@ -5,12 +5,14 @@ tableextension 50100 Customer extends Customer
         field(50100; "Customer Orders Total"; Decimal)
         {
             Caption = 'Customer Orders Total';
-            DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = sum("Customer Order Header"."Order Amount" where(Customer = field("No.")));
         }
         field(50101; "Customer Orders Payments Total"; Decimal)
         {
             Caption = 'Customer Orders Payments Total';
-            DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = sum("Customer Order Payment".Amount where("Customer No" = field("No.")));
         }
     }
 }
