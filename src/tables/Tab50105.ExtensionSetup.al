@@ -5,7 +5,7 @@ table 50105 "Extension Setup"
 
     fields
     {
-        field(4; "Primary Key"; Code[10])
+        field(4; "Primary Key"; Decimal)
         {
             Caption = 'Primary Key';
         }
@@ -32,4 +32,9 @@ table 50105 "Extension Setup"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    begin
+        "Primary Key" := 0;
+    end;
 }

@@ -8,6 +8,7 @@ codeunit 50100 OnInstallCodeunit
 
         if MyAppInfo.DataVersion = Version.Create(0, 0, 0, 0) then begin
             SetNoSeries();
+            SetExtSetup();
         end;
     end;
 
