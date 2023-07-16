@@ -3,19 +3,20 @@ table 50102 "Posted Customer Order Line"
     Caption = 'Customer Order Line';
     DataClassification = CustomerContent;
 
+    ObsoleteReason = 'New table was created';
+    ObsoleteState = Pending;
+
     fields
     {
         field(1; "Line No"; Code[20])
         {
             Caption = 'Line No';
+
+            // AutoIncrement = true;
         }
         field(2; "Order No"; Code[20])
         {
             Caption = 'Order No';
-        }
-        field(3; "Line Type"; Enum "Sales Line Type")
-        {
-            Caption = 'Line Type';
         }
         field(4; Qty; Decimal)
         {
@@ -33,7 +34,7 @@ table 50102 "Posted Customer Order Line"
         {
             Caption = 'Total Amount';
         }
-        field(8; "No"; Code[20])
+        field(8; "Item No"; Code[20])
         {
             Caption = 'Item No';
         }

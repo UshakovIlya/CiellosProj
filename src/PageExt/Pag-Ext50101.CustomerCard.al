@@ -1,5 +1,6 @@
 pageextension 50101 "Customer Card" extends "Customer Card"
 {
+
     layout
     {
         movebefore(Name; "Balance (LCY)", "CustSalesLCY - CustProfit - AdjmtCostLCY", AdjCustProfit)
@@ -20,13 +21,13 @@ pageextension 50101 "Customer Card" extends "Customer Card"
         {
             field("Customer Orders Payments Total"; Rec."Customer Orders Payments Total")
             {
-                ApplicationArea = All;
+                ApplicationArea = Basic;
                 Editable = false;
                 ToolTip = 'Specifies the value of the Customer Orders Payments Total field.';
             }
             field("Customer Orders Total"; Rec."Customer Orders Total")
             {
-                ApplicationArea = All;
+                ApplicationArea = Basic;
                 Editable = false;
                 ToolTip = 'Specifies the value of the Customer Orders Total field.';
             }
@@ -34,6 +35,24 @@ pageextension 50101 "Customer Card" extends "Customer Card"
     }
     actions
     {
+        addfirst("F&unctions")
+        {
+            action(DelRec)
+            {
+                Caption = 'Delete Customer';
+                ToolTip = 'Executes the Delete Customer action.';
+
+                ApplicationArea = all;
+                Image = Delete;
+
+                trigger OnAction()
+                begin
+                    if Confirm(CustDeleteLbl, true, Rec."No.") then
+                        Rec.Delete(true);
+                end;
+            }
+        }
+
         addbefore(NewSalesQuote)
         {
             action(NewCustOrd)
@@ -46,25 +65,20 @@ pageextension 50101 "Customer Card" extends "Customer Card"
                 RunObject = Page "Customer Order";
                 RunPageLink = Customer = FIELD("No.");
                 RunPageMode = Create;
-                // trigger OnAction()
-                // var
-                //     CustOrd: Record "Customer Order Header";
-                //     CustOrdPage: PAge "Customer Order";
-                // begin
-                //     CustOrd.init();
-                //     CustOrd.Validate(Customer);
-                //     if CustOrd.Insert() then begin
-                //         CustOrdPage.SetRecord(CustOrd);
-                //         CustOrdPage.Run();
-                //     end;
-                // end;
-            }
-            action(NewCustOrdPaym)
-            {
-                Caption = 'New Customer Order Payment';
-                ToolTip = 'Executes the New Customer Order Payment action.';
-                Image = NewDocument;
             }
         }
+
+        addfirst(Promoted)
+        {
+            actionref(DelRecRef; DelRec) { }
+        }
     }
+
+    trigger OnDeleteRecord(): Boolean
+    begin
+        Error('Please, try another action');
+    end;
+
+    var
+        CustDeleteLbl: LAbel 'Do you really want to delete the %1 customer?';
 }

@@ -3,7 +3,7 @@ table 50103 "Customer Order Payment"
     Caption = 'Customer Order Payment';
     DataClassification = CustomerContent;
     DrillDownPageID = "Customer Order Payment List";
-    LookupPageID = "Customer Order Payment Card";
+    // LookupPageID = "Customer Order Payment Card";
 
     fields
     {
@@ -31,6 +31,10 @@ table 50103 "Customer Order Payment"
         {
             Caption = 'Date of Payment';
         }
+        field(7; Paid; Boolean)
+        {
+
+        }
     }
     keys
     {
@@ -39,4 +43,19 @@ table 50103 "Customer Order Payment"
             Clustered = true;
         }
     }
+    trigger OnInsert()
+    var
+    begin
+        if "Payment No" = '' then begin
+            ExtSetup.Get();
+            ExtSetup.TestField("Cust. Order Paymnet");
+            NoSeriesMgt.InitSeries(ExtSetup."Cust. Order Paymnet", xRec."No Series", 0D, "Payment No", "No Series");
+        end;
+        Paid := false;
+    end;
+
+    var
+        ExtSetup: Record "Extension Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+
 }

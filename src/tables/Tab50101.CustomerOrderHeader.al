@@ -15,30 +15,36 @@ table 50101 "Customer Order Header"
         {
             Caption = 'Customer';
 
-            TableRelation = Customer."No." where("No." = field(Customer));
+            TableRelation = Customer."No.";
+
+            trigger OnValidate()
+            var
+                Customer: Record Customer;
+            begin
+                if Customer.Get(Rec.Customer) then
+                    Validate("Customer Name", Customer.Name);
+
+            end;
         }
         field(3; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             TableRelation = "No. Series";
         }
-        field(4; Vendor; Code[20])
-        {
-            Caption = 'Vendor';
-        }
         field(5; "Order Amount"; Decimal)
         {
             Caption = 'Order Amount';
+            FieldClass = FlowField;
+            CalcFormula = sum("Customer Order Line New"."Total Amount" where("Order No" = field("Order No")));
         }
         field(6; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
-
             TableRelation = Customer.Name;
         }
-        field(7; "Vendor Name"; Text[100])
+        field(7; "Document Date"; Date)
         {
-            Caption = 'Vendor Name';
+            Caption = 'Document Date';
         }
     }
     keys

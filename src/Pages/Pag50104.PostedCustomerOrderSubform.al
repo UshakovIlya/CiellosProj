@@ -1,39 +1,31 @@
 page 50104 "Posted Customer Order Subform"
 {
     ApplicationArea = All;
-    Caption = 'Customer Order Subform';
+    Caption = 'Posted Customer Order Lines';
     PageType = ListPart;
-    SourceTable = "Customer Order Line";
-
+    SourceTable = "Posted Customer Order Line New";
+    Editable = false;
     layout
     {
         area(content)
         {
             repeater(General)
             {
-                field("Amount per Item"; Rec."Amount per Item")
+                field("Line No"; Rec."Line No")
                 {
-                    ToolTip = 'Specifies the value of the Amount per Item field.';
+                    ToolTip = 'Specifies the value of the Line No field.';
+                }
+                field("Item No"; Rec."Item No")
+                {
+                    ToolTip = 'Specifies the value of the Item No field.';
                 }
                 field(Description; Rec.Description)
                 {
                     ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Line No"; Rec."Line No")
+                field("Amount per Item"; Rec."Amount per Item")
                 {
-                    ToolTip = 'Specifies the value of the Line No field.';
-                }
-                field("Line Type"; Rec."Line Type")
-                {
-                    ToolTip = 'Specifies the value of the Line Type field.';
-                }
-                field(No; Rec.No)
-                {
-                    ToolTip = 'Specifies the value of the Item No field.';
-                }
-                field("Order No"; Rec."Order No")
-                {
-                    ToolTip = 'Specifies the value of the Order No field.';
+                    ToolTip = 'Specifies the value of the Amount per Item field.';
                 }
                 field(Qty; Rec.Qty)
                 {

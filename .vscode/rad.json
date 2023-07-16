@@ -1,1 +1,1 @@
-﻿{"Added":[],"Modified":[],"Removed":[]}
+﻿{"Added":[],"Modified":[{"Id":50106,"Kind":10,"Name":"Customer Order Line New","PackagePath":"/src/src/tables/Tab50106.CustomerOrderLineNew.al"},{"Id":50101,"Kind":12,"Name":"Customer Order Subform","PackagePath":"/src/src/Pages/Pag50101.CustomerOrderSubform.al"}],"Removed":[]}

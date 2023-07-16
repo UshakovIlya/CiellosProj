@@ -25,40 +25,15 @@ page 50100 "Customer Order"
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
-                    Enabled = false;
-                    // TableRelation = Customer.Name;
-                }
-                field("No. Series"; Rec."No. Series")
-                {
-                    ToolTip = 'Specifies the value of the No. Series field.';
-                    ApplicationArea = All;
                 }
                 field("Order Amount"; Rec."Order Amount")
                 {
                     ToolTip = 'Specifies the value of the Order Amount field.';
                     ApplicationArea = All;
                 }
-                field("Order No"; Rec."Order No")
+                field("Document Date"; Rec."Document Date")
                 {
-                    ToolTip = 'Specifies the value of the Order No field.';
-                    ApplicationArea = All;
-                }
-                field(Vendor; Rec.Vendor)
-                {
-                    ToolTip = 'Specifies the value of the Vendor field.';
-                    ApplicationArea = All;
-                    TableRelation = Vendor."No." where("No." = field(Vendor));
-                    trigger OnValidate()
-                    begin
-                        CurrPage.Update();
-                    end;
-                }
-                field("Vendor Name"; Rec."Vendor Name")
-                {
-                    ToolTip = 'Specifies the value of the Vendor Name field.';
-                    ApplicationArea = All;
-                    Enabled = false;
-                    TableRelation = Vendor.Name;
+                    ToolTip = 'Specifies the value of the Document Date field.';
                 }
             }
             part(CustOrderLines; "Customer Order Subform")
@@ -80,7 +55,7 @@ page 50100 "Customer Order"
             {
                 ApplicationArea = Basic, Suite;
                 Provider = CustOrderLines;
-                SubPageLink = "No." = FIELD(No);
+                SubPageLink = "No." = FIELD("Item No");
             }
         }
     }
@@ -96,8 +71,13 @@ page 50100 "Customer Order"
                 Image = Post;
 
                 trigger OnAction()
+                var
+                    PostMgt: Codeunit PostingMgt;
                 begin
-
+                    if Confirm(ConfirmPostLbl, true) then begin
+                        PostMgt.PostCustOrders(Rec);
+                        CurrPage.Close();
+                    end;
                 end;
             }
         }
@@ -107,4 +87,7 @@ page 50100 "Customer Order"
         }
 
     }
+
+    var
+        ConfirmPostLbl: Label 'Are you sure you want to post the order?';
 }

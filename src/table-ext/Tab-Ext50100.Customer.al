@@ -6,7 +6,7 @@ tableextension 50100 Customer extends Customer
         {
             Caption = 'Customer Orders Total';
             FieldClass = FlowField;
-            CalcFormula = sum("Customer Order Header"."Order Amount" where(Customer = field("No.")));
+            CalcFormula = sum("Posted Customer Order Header"."Order Amount" where(Customer = field("No.")));
         }
         field(50101; "Customer Orders Payments Total"; Decimal)
         {
@@ -15,4 +15,8 @@ tableextension 50100 Customer extends Customer
             CalcFormula = sum("Customer Order Payment".Amount where("Customer No" = field("No.")));
         }
     }
+
+    var
+        CustDeleteLbl: LAbel 'Do you really want to delete the %1 customer?';
+
 }

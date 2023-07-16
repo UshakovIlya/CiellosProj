@@ -26,7 +26,7 @@ codeunit 50100 OnInstallCodeunit
         if not MyExtSetUp.Get() then begin
             MyExtSetUp.Init();
             MyExtSetUp."Cust. Order" := 'CORD';
-            MyExtSetUp."Post. Cust. Order" := 'POST-CORD';
+            MyExtSetUp."Post. Cust. Order" := 'POSTCORD';
             MyExtSetUp."Cust. Order Paymnet" := 'PAYM';
             MyExtSetUp.Insert();
         end;
@@ -49,17 +49,17 @@ codeunit 50100 OnInstallCodeunit
             end;
         end;
 
-        if not NoSeries.Get('POST-CORD') then begin
+        if not NoSeries.Get('POSTCORD') then begin
             NoSeries.Init();
-            NoSeries.Code := 'POST-CORD';
+            NoSeries.Code := 'POSTCORD';
             NoSeries.Validate("Default Nos.", true);
             NoSeries.Validate("Manual Nos.", true);
 
             if NoSeries.Insert() then begin
                 NoSeriesLines.Init();
-                NoSeriesLines."Series Code" := 'POST-CORD';
-                NoSeriesLines."Starting No." := 'POST-CORD-000001';
-                NoSeriesLines."Ending No." := 'POST-CORD-999999';
+                NoSeriesLines."Series Code" := 'POSTCORD';
+                NoSeriesLines."Starting No." := 'POSTCORD-000001';
+                NoSeriesLines."Ending No." := 'POSTCORD-999999';
                 if NoSeriesLines.Insert() then;
             end;
         end;

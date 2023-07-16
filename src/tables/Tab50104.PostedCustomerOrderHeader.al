@@ -19,10 +19,6 @@ table 50104 "Posted Customer Order Header"
         {
             Caption = 'No. Series';
         }
-        field(4; Vendor; Code[20])
-        {
-            Caption = 'Vendor';
-        }
         field(5; "Order Amount"; Decimal)
         {
             Caption = 'Order Amount';
@@ -31,9 +27,18 @@ table 50104 "Posted Customer Order Header"
         {
             Caption = 'Customer Name';
         }
-        field(7; "Vendor Name"; Text[100])
+        field(8; "Remaining Amount"; Decimal)
         {
-            Caption = 'Vendor Name';
+            Caption = 'Remaining AMount';
+        }
+        field(9; "Paid Amount"; Decimal)
+        {
+            Caption = 'Paid AMount';
+            TableRelation = "Customer Order Payment".Amount where("Customer Order No" = field("Order No"));
+        }
+        field(4; "Document Date"; Date)
+        {
+            Caption = 'Document Date';
         }
     }
     keys
@@ -43,4 +48,18 @@ table 50104 "Posted Customer Order Header"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+    begin
+        if "Order No" = '' then begin
+            ExtSetup.Get();
+            ExtSetup.TestField("Post. Cust. Order");
+            NoSeriesMgt.InitSeries(ExtSetup."Post. Cust. Order", xRec."No. Series", 0D, "Order No", "No. Series");
+        end;
+    end;
+
+    var
+        ExtSetup: Record "Extension Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }
