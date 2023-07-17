@@ -18,13 +18,6 @@ pageextension 50100 RoleCenter extends "Business Manager Role Center" //9022
                 ApplicationArea = All;
                 RunObject = page "Posted Customer Order List";
             }
-            // action(FF)
-            // {
-            //     Caption = 'Customer Order Payments';
-            //     ToolTip = 'Executes the Customer Order Payments action.';
-            //     ApplicationArea = All;
-            //     RunObject = report " Posted Customer Orders";
-            // }
 
         }
     }

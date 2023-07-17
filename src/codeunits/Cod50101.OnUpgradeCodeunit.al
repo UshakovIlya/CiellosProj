@@ -8,10 +8,13 @@ codeunit 50101 OnUpgradeCodeunit
         Customer: REcord Customer;
         Vendor: Record Vendor;
     begin
-        // if Customer.IsEmpty then
-        //     Error('You don`t have customers for this company');
-        // if Vendor.IsEmpty then
-        //     Error('You don`t have Vendors for this company');
+        if NavApp.GetCurrentModuleInfo(MyAppInfo) then
+            if MyAppInfo.DataVersion = Version.Create(1, 1, 0, 0) then begin
+                if Customer.IsEmpty then
+                    Error('You don`t have customers for this company');
+                if Vendor.IsEmpty then
+                    Error('You don`t have Vendors for this company');
+            end;
     end;
 
     trigger OnCheckPreconditionsPerDatabase()

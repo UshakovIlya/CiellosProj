@@ -30,7 +30,6 @@ codeunit 50103 PaymentMgt
                         Customer.CalcFields("Balance (LCY)");
                     end;
 
-                    // Customer."Balance (LCY)" := Customer."Balance (LCY)" - Payments.Amount;
                     PostCustOrder."Remaining Amount" := PostCustOrder."Remaining Amount" - Payments.Amount;
                     PostCustOrder."Paid Amount" := PostCustOrder."Paid Amount" + Payments.Amount;
 
