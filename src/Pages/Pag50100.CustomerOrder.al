@@ -25,6 +25,7 @@ page 50100 "Customer Order"
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Order Amount"; Rec."Order Amount")
                 {

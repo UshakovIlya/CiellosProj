@@ -22,7 +22,7 @@ codeunit 50103 PaymentMgt
             if Payments.FindSet() then
                 repeat
                     if (PostCustOrder."Remaining Amount" - Payments.Amount) < 0 then
-                        Error(NotSuffAmount, Payments."Payment No");
+                        Error(NotSuffAmount);
 
                     DetCustLedgEntry.SetRange("Customer No.", Customer."No.");
                     if DetCustLedgEntry.FindFirst() then begin
@@ -47,5 +47,5 @@ codeunit 50103 PaymentMgt
     end;
 
     var
-        NotSuffAmount: Label 'Not Sufficien amount in Payment NO %1';
+        NotSuffAmount: Label 'Not Sufficien amount in Payment';
 }

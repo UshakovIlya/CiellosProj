@@ -86,6 +86,7 @@ page 50102 "Customer Order List"
     trigger OnOpenPage()
     begin
         Rec.CalcFields("Order Amount");
+
     end;
 
     var
